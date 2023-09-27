@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -11,14 +12,22 @@
 <body>
 	<main>
 		<h1>To-do List Application</h1>
-		<div id="indexPar">
-			<p>Click add to add new items</p>
+		<div id = "indexPar"> <p>Click add to add new items</p>
 			<p>Double click to change content</p>
 			<p>Click the x to remove an item</p>
 		</div>
-		<div id="login">
-			<a href="to_do_list.html"><button>Login</button></a>
-		</div>
+		<a href="to_do_list.html"><button>Login</button></a>
+		
+		<form name="input" method="get">
+			<div class="pass">
+				<p>Enter Your Password</p>
+				<input type="text" name="password"><br>
+				<div data-role="navbar">
+					<button id = "login--form" type="button" onclick="add_field()">login</button><br>
+				</div>
+			</div>
+		</form>
+
 	</main>
 	<script src="to_do_list.js"></script>
 </body>
