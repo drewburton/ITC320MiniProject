@@ -1,49 +1,48 @@
 "use strict";
-(function ($) {
 
-    var list = $("#taskList");
-    var id = 1;
+const $ = selector => document.querySelector(selector);
 
-    function addItem() {
-        let entry = document.createElement('li'); //New list entry for the new task.
-        let taskText = document.createElement('span'); //New Text span for the task portion.
-        let dateText = document.createElement('span'); //New Text span for the due date portion.
-        let deleteButton = document.createElement("button"); //New Button element for deleting the task.
+var list = $("#taskList");
+var id = 1;
 
-        taskText.textContent = "Example Task #" + id; //Set dummy text (for now).
-        dateText.textContent = "Due Date: 10/02/2023"; //Set dummy text (for now).
-        deleteButton.textContent = "X"; //Button text
+function addItem() {
+    let entry = document.createElement('li'); //New list entry for the new task.
+    let taskText = document.createElement('span'); //New Text span for the task portion.
+    let dateText = document.createElement('span'); //New Text span for the due date portion.
+    let deleteButton = document.createElement("button"); //New Button element for deleting the task.
 
-        taskText.setAttribute("id", "task" + id);
-        dateText.setAttribute("id", "date" + id);
+    taskText.textContent = "Example Task #" + id; //Set dummy text (for now).
+    dateText.textContent = "Due Date: 10/02/2023"; //Set dummy text (for now).
+    deleteButton.textContent = "X"; //Button text
 
-        //add a click event to remove the current item
-        deleteButton.addEventListener("click", function () {
-            entry.remove();
-        });
+    taskText.setAttribute("id", "task" + id);
+    dateText.setAttribute("id", "date" + id);
 
-        entry.appendChild(taskText);
-        entry.appendChild(dateText);
-        entry.appendChild(deleteButton);
-        list.appendChild(entry);
-
-        $("#task" + id).addEventListener("dblclick", task);
-        $("#date" + id).addEventListener("dblclick", date);
-        id += 1;
-    }
-
-    //Implement this function to be able to modify the task text.
-    function task() {
-        console.log("TaskText");
-    }
-
-    //Implement this function to be able to modify the date text.
-    function date() {
-        console.log("DateText");
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        $("#add").addEventListener("click", addItem);
+    //add a click event to remove the current item
+    deleteButton.addEventListener("click", function () {
+        entry.remove();
     });
 
-})(selector => document.querySelector(selector))
+    entry.appendChild(taskText);
+    entry.appendChild(dateText);
+    entry.appendChild(deleteButton);
+    list.appendChild(entry);
+
+    $("#task" + id).addEventListener("dblclick", task);
+    $("#date" + id).addEventListener("dblclick", date);
+    id += 1;
+}
+
+//Implement this function to be able to modify the task text.
+function task() {
+    console.log("TaskText");
+}
+
+//Implement this function to be able to modify the date text.
+function date() {
+    console.log("DateText");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    $("#add").addEventListener("click", addItem);
+});
