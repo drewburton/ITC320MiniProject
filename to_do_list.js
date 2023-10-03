@@ -5,16 +5,27 @@ const $ = selector => document.querySelector(selector);
 var list = $("#taskList");
 var id = 1;
 
-function addItem() {
+function initialItems(){
+    for(let i = 0; i < 3; i++){
+        addItem("", "");
+    }
+}
+
+function addItem(taskExample, dateExample) {
     let entry = document.createElement('li'); //New list entry for the new task.
     let taskText = document.createElement('span'); //New Text span for the task portion.
+    let taskEntry = document.createElement('input');
     let dateText = document.createElement('span'); //New Text span for the due date portion.
+    let dateEntry = document.createElement('input');
     let deleteButton = document.createElement("button"); //New Button element for deleting the task.
 
-    taskText.textContent = "Example Task #" + id; //Set dummy text (for now).
-    dateText.textContent = "Due Date: 10/02/2023"; //Set dummy text (for now).
+    taskText.textContent = "Task #" + id + ": "; //Set dummy text (for now).
+    dateText.textContent = " Due Date: "; //Set dummy text (for now).
+    taskEntry.textContent = taskExample;
+    dateEntry.textContent = dateExample;
     deleteButton.textContent = "X"; //Button text
 
+    deleteButton.className = "delete"
     taskText.setAttribute("id", "task" + id);
     dateText.setAttribute("id", "date" + id);
 
@@ -24,7 +35,9 @@ function addItem() {
     });
 
     entry.appendChild(taskText);
+    entry.appendChild(taskEntry);
     entry.appendChild(dateText);
+    entry.appendChild(dateEntry);
     entry.appendChild(deleteButton);
     list.appendChild(entry);
 
@@ -44,5 +57,6 @@ function date() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    initialItems("","");
     $("#add").addEventListener("click", addItem);
 });
