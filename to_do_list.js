@@ -6,8 +6,10 @@ var list = $("#taskList");
 var id = 1;
 
 function initialItems(){
-    for(let i = 0; i < 3; i++){
-        addItem("", "");
+    let tasks = ["Do Homework", "Do Laundry", "Clean Dishes", "Watch TV", "Update Computer"];
+    let dueDates = ["2023-10-23", "2023-10-25", "2023-10-24", "2023-10-27", "2023-10-30"];
+    for(let i = 0; i < 5; i++){
+        addItem(tasks[i], dueDates[i]);
     }
 }
 
@@ -21,17 +23,36 @@ function addItem(taskExample, dateExample) {
 
     taskText.textContent = "Task #" + id + ": "; //Set dummy text (for now).
     dateText.textContent = " Due Date: "; //Set dummy text (for now).
-    taskEntry.textContent = taskExample;
-    dateEntry.textContent = dateExample;
+    taskEntry.value = taskExample;
+    dateEntry.value = dateExample;
     deleteButton.textContent = "X"; //Button text
 
     deleteButton.className = "delete"
-    taskText.setAttribute("id", "task" + id);
-    dateText.setAttribute("id", "date" + id);
+    taskEntry.disabled = true;
+    dateEntry.disabled = true;
+    dateEntry.setAttribute("type", "date");
 
     //add a click event to remove the current item
     deleteButton.addEventListener("click", function () {
         entry.remove();
+    });
+
+    taskEntry.addEventListener("dblclick", function () {
+        taskEntry.disabled = false;
+        taskEntry.focus();
+    });
+
+    taskEntry.addEventListener("focusout", function (){
+        taskEntry.disabled = true;
+    });
+
+    dateEntry.addEventListener("dblclick", function (){
+        dateEntry.disabled = false;
+        dateEntry.focus();
+    });
+
+    dateEntry.addEventListener("focusout", function (){
+        dateEntry.disabled = true;
     });
 
     entry.appendChild(taskText);
@@ -41,22 +62,14 @@ function addItem(taskExample, dateExample) {
     entry.appendChild(deleteButton);
     list.appendChild(entry);
 
-    $("#task" + id).addEventListener("dblclick", task);
-    $("#date" + id).addEventListener("dblclick", date);
     id += 1;
 }
 
-//Implement this function to be able to modify the task text.
-function task() {
-    console.log("TaskText");
-}
-
-//Implement this function to be able to modify the date text.
-function date() {
-    console.log("DateText");
+function addBlankItem(){
+    addItem("","");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     initialItems("","");
-    $("#add").addEventListener("click", addItem);
+    $("#add").addEventListener("click", addBlankItem);
 });
