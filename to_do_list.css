@@ -5,7 +5,7 @@ h1 {
 	font-family: 'Courier New'
 }
 
-button {
+.logic {
 	background-color: green;
 	border-radius: 0.7em;
 	width: 6em;
